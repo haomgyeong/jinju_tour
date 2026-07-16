@@ -1,0 +1,264 @@
+/* ===========================================================
+   진주(晉州) 문화유적 안내 — 공통 스타일
+   컨셉: 남강(南江)의 밤빛 위에 떠오르는 유등(流燈)
+   =========================================================== */
+
+:root{
+  --night:      #16212c;   /* 남강의 밤 — 배경 */
+  --night-deep: #0e161e;
+  --paper:      #f4eede;   /* 한지빛 — 밝은 배경/카드 */
+  --paper-dim:  #e9e0c9;
+  --lantern:    #e7a23c;   /* 유등의 금빛 — 주요 강조색 */
+  --lantern-soft:#f0c274;
+  --ember:      #b6472f;   /* 단청 다홍 — 두 번째 강조색 */
+  --jade:       #33625a;   /* 남강 물빛 — 세 번째 강조색 */
+  --ink:        #1c2733;   /* 본문 글자(밝은 배경 위) */
+  --ink-soft:   #5b6674;
+  --line:       rgba(231,162,60,0.28);
+
+  --serif: "Noto Serif KR", "Nanum Myeongjo", serif;
+  --sans:  "Noto Sans KR", "Pretendard", -apple-system, sans-serif;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{color:inherit;}
+
+/* ---------- 상단 내비게이션 ---------- */
+.site-nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:22px clamp(20px,5vw,64px);
+  background:var(--night);
+  color:var(--paper);
+  border-bottom:1px solid rgba(231,162,60,0.35);
+}
+.site-nav .brand{
+  font-family:var(--serif);
+  font-size:1.15rem;
+  letter-spacing:0.06em;
+  text-decoration:none;
+  color:var(--paper);
+}
+.site-nav .brand b{color:var(--lantern);}
+.site-nav a.back{
+  font-size:0.92rem;
+  color:var(--lantern-soft);
+  text-decoration:none;
+  border:1px solid rgba(231,162,60,0.45);
+  padding:8px 16px;
+  border-radius:999px;
+  transition:background .2s ease;
+}
+.site-nav a.back:hover{background:rgba(231,162,60,0.15);}
+
+/* ---------- 히어로(공통) ---------- */
+.hero{
+  position:relative;
+  background:radial-gradient(ellipse at 50% -10%, #23334299, transparent 60%), var(--night);
+  color:var(--paper);
+  overflow:hidden;
+}
+.hero-inner{
+  max-width:1080px;
+  margin:0 auto;
+  padding:clamp(64px,9vw,120px) clamp(20px,5vw,64px) clamp(56px,7vw,96px);
+  position:relative;
+  z-index:2;
+}
+.eyebrow{
+  display:inline-block;
+  font-family:var(--serif);
+  color:var(--lantern);
+  border:1px solid rgba(231,162,60,0.5);
+  padding:4px 14px;
+  border-radius:999px;
+  font-size:0.85rem;
+  letter-spacing:0.12em;
+  margin-bottom:22px;
+}
+h1.display{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(2.3rem,5.2vw,3.6rem);
+  line-height:1.25;
+  margin:0 0 20px;
+}
+.hero p.lead{
+  max-width:640px;
+  font-size:1.08rem;
+  color:#d9d2bf;
+  margin:0;
+}
+
+/* 유등 SVG 장식 */
+.lantern-field{position:absolute; inset:0; z-index:1; pointer-events:none;}
+
+/* ---------- 히어로 배경 사진 ---------- */
+.hero.has-photo{background:var(--night);}
+.hero-photo{position:absolute; inset:0; z-index:0; overflow:hidden;}
+.hero-photo img{
+  width:100%; height:100%; object-fit:cover;
+  filter:brightness(0.5) saturate(1.05);
+  transform:scale(1.02);
+}
+.hero-photo::after{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(14,22,30,0.35) 0%, rgba(14,22,30,0.65) 55%, var(--night) 96%),
+    linear-gradient(90deg, rgba(14,22,30,0.55) 0%, rgba(14,22,30,0.05) 55%);
+}
+.photo-credit{
+  position:relative; z-index:2;
+  font-size:0.72rem;
+  color:#a9a291;
+  margin-top:18px;
+}
+.photo-credit a{color:#c9bd98; text-decoration:underline;}
+
+/* 카드 썸네일 사진 */
+.card .thumb-wrap{
+  display:block;
+  aspect-ratio:4/3;
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:18px;
+  background:#0e161e;
+  position:relative;
+}
+.card .thumb-wrap img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .35s ease;
+}
+.card:hover .thumb-wrap img{transform:scale(1.06);}
+.card .thumb-wrap::after{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 55%, rgba(14,22,30,0.55) 100%);
+}
+
+/* ---------- 섹션 공통 ---------- */
+section{
+  padding:clamp(48px,7vw,88px) clamp(20px,5vw,64px);
+  max-width:1080px;
+  margin:0 auto;
+}
+h2.section-title{
+  font-family:var(--serif);
+  font-size:clamp(1.5rem,3vw,2.1rem);
+  margin:0 0 28px;
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+}
+h2.section-title .num{
+  font-family:var(--serif);
+  color:var(--lantern);
+  font-size:0.9em;
+}
+p.body-text{font-size:1.03rem; color:var(--ink); max-width:72ch;}
+.divider{
+  width:64px;height:3px;border:none;
+  background:linear-gradient(90deg,var(--lantern),var(--ember));
+  margin:8px 0 0;
+}
+
+/* ---------- 카드 그리드 (메인 인덱스) ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+  margin-top:8px;
+}
+.card{
+  position:relative;
+  background:linear-gradient(180deg,#1d2a37,#141d26);
+  border:1px solid rgba(231,162,60,0.22);
+  border-radius:14px;
+  padding:30px 26px 28px;
+  color:var(--paper);
+  text-decoration:none;
+  display:block;
+  transition:transform .25s ease, border-color .25s ease;
+}
+.card:hover{transform:translateY(-4px); border-color:var(--lantern);}
+.card .tag{
+  font-family:var(--serif);
+  color:var(--lantern);
+  font-size:0.82rem;
+  letter-spacing:0.08em;
+  display:block;
+  margin-bottom:10px;
+}
+.card h3{
+  font-family:var(--serif);
+  font-size:1.35rem;
+  margin:0 0 10px;
+}
+.card p{
+  font-size:0.94rem;
+  color:#c9c2ac;
+  margin:0 0 18px;
+}
+.card .go{
+  font-size:0.86rem;
+  color:var(--lantern-soft);
+}
+
+/* ---------- 정보 박스 ---------- */
+.info-box{
+  background:var(--paper-dim);
+  border-left:4px solid var(--ember);
+  border-radius:6px;
+  padding:22px 26px;
+  margin:28px 0;
+}
+.info-box dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:8px 18px; font-size:0.95rem;}
+.info-box dt{font-family:var(--serif); color:var(--ember); white-space:nowrap;}
+.info-box dd{margin:0;}
+
+.callout{
+  background:var(--night);
+  color:var(--paper);
+  border-radius:12px;
+  padding:26px 28px;
+  margin:28px 0;
+}
+.callout p{color:#d9d2bf; margin:0;}
+
+/* ---------- 출처 ---------- */
+.sources{
+  background:var(--paper-dim);
+  border-radius:12px;
+  padding:26px 28px;
+  font-size:0.9rem;
+  color:var(--ink-soft);
+}
+.sources h2.section-title{margin-bottom:14px; font-size:1.2rem;}
+.sources ol{margin:0; padding-left:1.2em;}
+.sources li{margin-bottom:8px;}
+.sources a{color:var(--jade); text-decoration:underline;}
+
+/* ---------- 푸터 ---------- */
+footer{
+  background:var(--night-deep);
+  color:#8a93a0;
+  text-align:center;
+  padding:32px 20px;
+  font-size:0.85rem;
+}
+
+@media(max-width:560px){
+  .site-nav{padding:16px 18px;}
+}
